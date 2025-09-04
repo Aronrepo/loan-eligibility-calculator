@@ -1,38 +1,13 @@
+# docker-compose.yml
 version: "3.9"
 
 services:
-  postgres:
-    image: postgres:15
-    container_name: loan_postgres
-    environment:
-      POSTGRES_DB: loandb
-      POSTGRES_USER: loanuser
-      POSTGRES_PASSWORD: loanpass
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U loanuser -d loandb"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   loan-app:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: loan_app
-    depends_on:
-      postgres:
-        condition: service_healthy
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/loandb
-      SPRING_DATASOURCE_USERNAME: loanuser
-      SPRING_DATASOURCE_PASSWORD: loanpass
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
       - "8080:8080"
-
-volumes:
-  postgres_data:
+    environment:
+      SPRING_PROFILES_ACTIVE: default
