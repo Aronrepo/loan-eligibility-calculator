@@ -10,7 +10,6 @@ export async function calculateMaxLoan(payload: LoanRequest): Promise<LoanRespon
   });
 
   if (!res.ok) {
-    // backend returns {success:false, message:string} on errors
     const err = await res.json().catch(() => ({ message: 'Network error' }));
     throw new Error(err.message || 'Unknown error');
   }
