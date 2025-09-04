@@ -2,7 +2,7 @@
 version: "3.9"
 
 services:
-  loan-app:
+  backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -11,3 +11,14 @@ services:
       - "8080:8080"
     environment:
       SPRING_PROFILES_ACTIVE: default
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: frontend-image
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
