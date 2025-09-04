@@ -1,4 +1,3 @@
-// src/App.tsx
 import { useState } from "react";
 import {
   Container,
@@ -15,14 +14,12 @@ import * as yup from "yup";
 import { calculateMaxLoan } from "./api/loanApi";
 import type { LoanRequest, LoanResponse } from "./types/loan";
 
-/* ---------- validation ---------- */
 const schema = yup.object({
   applicantName: yup.string().required("Name is required"),
   annualIncome: yup.number().min(20000).required("Annual income is required"),
   currentDebt: yup.number().min(0).required("Current debt is required"),
 });
 
-/* ---------- component ---------- */
 function App() {
   const [result, setResult] = useState<LoanResponse | null>(null);
   const [error, setError] = useState<string>("");
@@ -53,7 +50,6 @@ function App() {
       .catch((e: Error) => setError(e.message));
   };
 
-  /* helper – clamp empty string to 0 instantly */
   const sanitizeNumeric =
     (name: "annualIncome" | "currentDebt") =>
     (e: React.ChangeEvent<HTMLInputElement>) => {
