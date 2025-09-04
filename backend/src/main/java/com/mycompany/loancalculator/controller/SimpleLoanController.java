@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 
+import static com.mycompany.loancalculator.controller.Paths.LOAN;
+
 @RestController
-@RequestMapping("/api/loan")
+@RequestMapping(LOAN)
 @RequiredArgsConstructor
 @Tag(name = "Loan", description = "Loan calculation endpoints")
 public class SimpleLoanController {

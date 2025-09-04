@@ -8,7 +8,6 @@ import java.math.RoundingMode;
 
 @Service
 public class SimpleLoanService {
-    private static final BigDecimal MIN_INCOME      = new BigDecimal("20000");
     private static final BigDecimal MAX_DTI_RATIO   = new BigDecimal("0.40");
     private static final BigDecimal INCOME_MULTIPLIER = new BigDecimal("5");
     private static final BigDecimal DEBT_MULTIPLIER   = new BigDecimal("2");

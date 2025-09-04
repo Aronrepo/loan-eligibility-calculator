@@ -1,7 +1,10 @@
 package com.mycompany.loancalculator.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 @Schema(description = "Payload for calculating the maximum loan amount")
